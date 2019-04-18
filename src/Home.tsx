@@ -47,56 +47,60 @@ class Home extends React.Component<{}, HomeState> {
       <div>
         <Header/>
         <div className="container">
-          <h2 id="explore-portal" className="uppercase">Explore Portal</h2>
-          <ExploreButtons
-            handleChanges={this.handleChange}
-            isSelected={isSelected}
-          />
-          <div className="homeExploreContainer">
-            <div id="homePageBarChart">
-              <SynapseComponents.QueryWrapper
-                initQueryRequest={initQueryRequest}
-                rgbIndex={rgbIndex}
-                facetName={facetName}
-                unitDescription={unitDescription}
-                facetAliases={facetAliases}
-              >
-                <SynapseComponents.StackedBarChart
-                  loadingScreen={<div className="bar-loader"><BarLoader color="#47337D" loading={true} /></div>}
+          <div className="row">
+            <div className="col-xs-12">
+              <h2 id="explore-portal" className="uppercase">Explore Portal</h2>
+              <ExploreButtons
+                handleChanges={this.handleChange}
+                isSelected={isSelected}
+              />
+              <div className="homeExploreContainer">
+                <div id="homePageBarChart">
+                  <SynapseComponents.QueryWrapper
+                    initQueryRequest={initQueryRequest}
+                    rgbIndex={rgbIndex}
+                    facetName={facetName}
+                    unitDescription={unitDescription}
+                    facetAliases={facetAliases}
+                  >
+                    <SynapseComponents.StackedBarChart
+                      loadingScreen={<div className="bar-loader"><BarLoader color="#47337D" loading={true} /></div>}
+                    />
+                  </SynapseComponents.QueryWrapper>
+                </div>
+                <Link to={`/Explore/${nameLinkLocation}`} id="exploreData"> Explore {name} </Link>
+              </div>
+
+              <div className="newContainer">
+                <h2 className="title"> NEW STUDIES </h2>
+                <SynapseComponents.CardContainerLogic
+                  type={synapseConfigs.studies.type}
+                  sql={synapseConfigs.studies.sql}
+                  limit={CARD_LIMIT}
                 />
-              </SynapseComponents.QueryWrapper>
+                <Link to={'/Explore/Studies'} className="viewAll center-content"> View All </Link>
+              </div>
+
+              <div className="newContainer">
+                <h2 className="title"> NEW PUBLICATIONS </h2>
+                <SynapseComponents.CardContainerLogic
+                  type={synapseConfigs.publications.type}
+                  sql={synapseConfigs.publications.sql}
+                  limit={CARD_LIMIT}
+                />
+                <Link to={'/Explore/Publications'} className="viewAll center-content"> View All </Link>
+              </div>
+
+              <div className="newContainer">
+                <h2 className="title"> NEW DATASETS </h2>
+                <SynapseComponents.CardContainerLogic
+                  type={synapseConfigs.datasets.type}
+                  sql={synapseConfigs.datasets.sql}
+                  limit={CARD_LIMIT}
+                />
+                <Link to={'/Explore/Datasets'} className="viewAll center-content"> View All </Link>
+              </div>
             </div>
-            <Link to={`/Explore/${nameLinkLocation}`} id="exploreData"> Explore {name} </Link>
-          </div>
-
-          <div className="newContainer">
-            <h2 className="title"> NEW STUDIES </h2>
-            <SynapseComponents.CardContainerLogic
-              type={synapseConfigs.studies.type}
-              sql={synapseConfigs.studies.sql}
-              limit={CARD_LIMIT}
-            />
-            <Link to={'/Explore/Studies'} className="viewAll center-content"> View All </Link>
-          </div>
-
-          <div className="newContainer">
-            <h2 className="title"> NEW PUBLICATIONS </h2>
-            <SynapseComponents.CardContainerLogic
-              type={synapseConfigs.publications.type}
-              sql={synapseConfigs.publications.sql}
-              limit={CARD_LIMIT}
-            />
-            <Link to={'/Explore/Publications'} className="viewAll center-content"> View All </Link>
-          </div>
-
-          <div className="newContainer">
-            <h2 className="title"> NEW DATASETS </h2>
-            <SynapseComponents.CardContainerLogic
-              type={synapseConfigs.datasets.type}
-              sql={synapseConfigs.datasets.sql}
-              limit={CARD_LIMIT}
-            />
-            <Link to={'/Explore/Datasets'} className="viewAll center-content"> View All </Link>
           </div>
         </div>
       </div>
